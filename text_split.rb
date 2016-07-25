@@ -1,12 +1,8 @@
 require "./lib/page"
 
-configure do
-  set :root, File.dirname(__FILE__)
-end
-
 class TextSplit < Sinatra::Base
 
-	post "/split" do
+	post "/split", :provides => :json do
 	  url = params[:url]
     # elements = params[:elements]
 

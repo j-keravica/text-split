@@ -12,6 +12,8 @@ group :test, :development do
   gem "rspec"
   gem "rack-test"
   gem "byebug"
+  gem "vcr"
+  gem "webmock"
 end
 
 ruby "2.2.1"

@@ -18,8 +18,8 @@
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 
 require "rack/test"
+require 'vcr'
 require "./environment.rb"
-
 
 
 RSpec.configure do |config|
@@ -47,6 +47,10 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
+  config.default_formatter = 'doc'
+
+
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
@@ -102,3 +106,9 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+VCR.configure do |c|
+  c.cassette_library_dir = 'spec/cassettes'
+  c.hook_into :webmock
+end
+

@@ -9,10 +9,14 @@ RSpec.describe TextSplit do
 
   describe "POST /split" do
     it "returns splitted words and page title" do
-      post "/split", { :url => File.join(settings.root, "/spec/lib/example.html") }
-      puts last_response.body["words"]
-      byebug
-      expect(last_response.body["words"]).to include("ok", "to")
+      VCR.use_cassette("example_page") do
+        post "/split", { :url => "https://medium.com/@jamievaron/hey-internet-stop-trying-to-inspire-me-b5022f3c0f7" }
+        response = JSON.parse(last_response.body)
+
+        expect(response["words"]).to include("ultra-positive", "Inspiration", "contemplative", "okay", "angry")
+        expect(response["words"].size).to eq(815)
+        expect(response["title"]).to include("Stop Trying To Inspire Me")
+      end
     end
   end
 end

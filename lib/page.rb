@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class Page
 
   def self.extract(url)
@@ -5,7 +7,7 @@ class Page
   end
 
   def initialize(url)
-    @doc = Nokogiri::HTML(File.open(url).read)
+    @doc = Nokogiri::HTML(open(url).read)
   end
 
   def text
