@@ -13,8 +13,8 @@ RSpec.describe TextSplit do
         post "/split", { :url => "https://medium.com/@jamievaron/hey-internet-stop-trying-to-inspire-me-b5022f3c0f7" }
         response = JSON.parse(last_response.body)
 
-        expect(response["words"]).to include("ultra-positive", "Inspiration", "contemplative", "okay", "angry")
-        expect(response["words"].size).to eq(815)
+        expect(response["text"]).to include("ultra-positive", "Inspiration", "contemplative", "okay", "angry")
+        expect(response["text"].length).to eq(4414)
         expect(response["title"]).to include("Stop Trying To Inspire Me")
       end
     end

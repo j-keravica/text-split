@@ -7,11 +7,10 @@ class TextSplit < Sinatra::Base
     # elements = params[:elements]
 
     extracted_page = Page.extract(url)
-    words = extracted_page.text.split
 
     json({
       :title => extracted_page.title,
-      :words => words
+      :text => extracted_page.text
     })
 	end
 
