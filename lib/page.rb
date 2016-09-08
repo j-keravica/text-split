@@ -17,7 +17,7 @@ class Page
   end
 
   def text
-    @xpath.empty? ? content : custom_content
+    (@xpath.nil? || @xpath.empty?) ? content : custom_content
   end
 
   def title
